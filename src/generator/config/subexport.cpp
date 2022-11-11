@@ -677,6 +677,8 @@ std::string proxyToSurge(std::vector<Proxy> &nodes, const std::string &base_conf
             switch(hash_(transproto))
             {
             case "tcp"_hash:
+                if (!x.ServerName.empty())
+                    proxy += ",sni=" + x.ServerName;
                 break;
             case "ws"_hash:
                 if(host.empty())
